@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions
 
 from .models import ContactRequest
 from .serializers import ContactRequestSerializer
-from .notifications import notify_worker_new_request
+from .notifications import notify_worker_new_request, notify_client_confirmation
 
 
 class ContactRequestViewSet(viewsets.ModelViewSet):
@@ -36,3 +36,4 @@ class ContactRequestViewSet(viewsets.ModelViewSet):
         # lo cambia el trabajador/personal mediante PATCH.
         instance = serializer.save(status=ContactRequest.Status.NEW)
         notify_worker_new_request(instance)
+        notify_client_confirmation(instance)

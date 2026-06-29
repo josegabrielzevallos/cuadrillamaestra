@@ -38,3 +38,30 @@ def notify_worker_new_request(contact_request):
         )
     except Exception:
         logger.exception('No se pudo enviar la notificación de solicitud.')
+
+
+def notify_client_confirmation(contact_request):
+    """Envía al cliente un correo de confirmación de su solicitud."""
+    recipient = (contact_request.client_email or '').strip()
+    if not recipient:
+        return
+
+    worker = contact_request.worker
+    tipo = contact_request.get_request_type_display()
+    asunto = 'Recibimos tu solicitud — Cuadrilla Maestra'
+    cuerpo = (
+        f'Hola {contact_request.client_name},\n\n'
+        f'Recibimos tu {tipo.lower()} para {worker.user.full_name}. '
+        f'El profesional se pondrá en contacto contigo pronto.\n\n'
+        f'Resumen:\n'
+        f'Zona: {contact_request.zone or "—"}\n'
+        f'Mensaje: {contact_request.message}\n\n'
+        f'Gracias por usar Cuadrilla Maestra.\n'
+    )
+    try:
+        send_mail(
+            asunto, cuerpo, settings.DEFAULT_FROM_EMAIL, [recipient],
+            fail_silently=True,
+        )
+    except Exception:
+        logger.exception('No se pudo enviar la confirmación al cliente.')
