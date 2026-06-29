@@ -4,7 +4,6 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
-import PersonIcon from '@mui/icons-material/Person';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ChatIcon from '@mui/icons-material/Chat';
 import StarRating from './StarRating';
@@ -13,16 +12,15 @@ import './WorkerCard.css';
 const WorkerCard = ({ worker }) => {
   const navigate = useNavigate();
   const services = worker.services || [];
+  const avatar =
+    worker.profile_image ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(worker.name || 'CM')}&background=0b2545&color=fff&size=128`;
 
   return (
     <div className="worker-card">
       <div className="worker-card-top">
         <div className="worker-avatar">
-          {worker.profile_image ? (
-            <img src={worker.profile_image} alt={worker.name} />
-          ) : (
-            <PersonIcon sx={{ fontSize: 46, color: '#9aa7b8' }} />
-          )}
+          <img src={avatar} alt={worker.name} />
         </div>
         <div className="worker-head">
           <div className="worker-name-row">

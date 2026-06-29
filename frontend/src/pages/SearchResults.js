@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import WorkerCard from '../components/WorkerCard';
@@ -15,8 +14,6 @@ const SearchResults = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
-
-  const [text, setText] = useState(searchParams.get('query') || '');
 
   const filters = {
     query: searchParams.get('query') || '',
@@ -66,37 +63,15 @@ const SearchResults = () => {
     setSearchParams(next);
   };
 
-  const handleTextSearch = (e) => {
-    e.preventDefault();
-    updateFilter('query', text.trim());
-  };
-
   const clearFilters = () => {
     const next = new URLSearchParams();
-    if (text.trim()) next.set('query', text.trim());
+    const query = searchParams.get('query');
+    if (query) next.set('query', query);
     setSearchParams(next);
   };
 
   return (
     <div className="results-page">
-      {/* Barra superior */}
-      <div className="results-topbar">
-        <div className="container">
-          <form className="results-search" onSubmit={handleTextSearch}>
-            <SearchIcon sx={{ color: '#6b7280' }} />
-            <input
-              type="text"
-              placeholder="Busca: gasfitero, mayólica, albañil, electricista..."
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button type="submit" className="btn btn-primary">
-              Buscar
-            </button>
-          </form>
-        </div>
-      </div>
-
       <div className="container results-layout">
         {/* Filtros */}
         <aside className="filters">

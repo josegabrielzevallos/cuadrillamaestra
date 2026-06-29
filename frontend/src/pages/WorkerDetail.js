@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import PersonIcon from '@mui/icons-material/Person';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
@@ -43,6 +42,9 @@ const WorkerDetail = () => {
   const evaluation = worker.supervisor_evaluation;
   const reviews = worker.client_reviews || [];
   const projects = worker.projects || [];
+  const avatar =
+    worker.profile_image ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(worker.name || 'CM')}&background=0b2545&color=fff&size=200`;
 
   return (
     <div className="detail-page">
@@ -50,11 +52,7 @@ const WorkerDetail = () => {
       <div className="detail-hero">
         <div className="container detail-hero-inner">
           <div className="detail-avatar">
-            {worker.profile_image ? (
-              <img src={worker.profile_image} alt={worker.name} />
-            ) : (
-              <PersonIcon sx={{ fontSize: 70, color: '#9aa7b8' }} />
-            )}
+            <img src={avatar} alt={worker.name} />
           </div>
           <div className="detail-headinfo">
             <div className="detail-name-row">
