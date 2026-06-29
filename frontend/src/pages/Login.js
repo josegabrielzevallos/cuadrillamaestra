@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 import './Forms.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, googleLogin } = useAuth();
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,16 @@ const Login = () => {
       setError('Usuario o contraseña incorrectos.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogle = async (resp) => {
+    setError('');
+    try {
+      await googleLogin(resp.credential);
+      navigate('/admin');
+    } catch (err) {
+      setError('No se pudo iniciar sesión con Google.');
     }
   };
 
@@ -55,6 +66,10 @@ const Login = () => {
               {loading ? 'Ingresando...' : 'Ingresar'}
             </button>
           </form>
+          <div className="form-divider"><span>o</span></div>
+          <div className="google-btn">
+            <GoogleLogin onSuccess={handleGoogle} onError={() => setError('No se pudo iniciar sesión con Google.')} />
+          </div>
           <div className="form-foot">
             ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
           </div>

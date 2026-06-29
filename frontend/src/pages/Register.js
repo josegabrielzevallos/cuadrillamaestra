@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 import './Forms.css';
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register } = useAuth();
+  const { register, googleLogin } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -19,6 +20,16 @@ const Register = () => {
   });
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleGoogle = async (resp) => {
+    setError('');
+    try {
+      await googleLogin(resp.credential, form.role);
+      navigate('/admin');
+    } catch (err) {
+      setError('No se pudo registrar con Google.');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,6 +98,10 @@ const Register = () => {
               {loading ? 'Creando cuenta...' : 'Crear cuenta'}
             </button>
           </form>
+          <div className="form-divider"><span>o</span></div>
+          <div className="google-btn">
+            <GoogleLogin onSuccess={handleGoogle} onError={() => setError('No se pudo registrar con Google.')} text="signup_with" />
+          </div>
           <div className="form-foot">
             ¿Ya tienes cuenta? <Link to="/login">Ingresa</Link>
           </div>

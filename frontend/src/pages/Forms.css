@@ -103,6 +103,27 @@
   color: var(--cm-gray);
   margin-top: 4px;
 }
+.form-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0;
+  color: var(--cm-gray);
+  font-size: 13px;
+}
+.form-divider::before,
+.form-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e0e0e0;
+}
+.form-divider span {
+  padding: 0 12px;
+}
+.google-btn {
+  display: flex;
+  justify-content: center;
+}
 .form-check {
   display: flex;
   align-items: center;

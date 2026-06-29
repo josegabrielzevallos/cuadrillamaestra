@@ -6,6 +6,8 @@ WORKDIR /app
 # La URL del backend se inyecta en tiempo de build
 ARG REACT_APP_API_URL=http://localhost:8000/api
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
+ARG REACT_APP_GOOGLE_CLIENT_ID=
+ENV REACT_APP_GOOGLE_CLIENT_ID=$REACT_APP_GOOGLE_CLIENT_ID
 
 COPY package.json package-lock.json* ./
 RUN npm install --legacy-peer-deps

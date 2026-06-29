@@ -217,3 +217,6 @@ if EMAIL_HOST:
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Cuadrilla Maestra <noreply@cuadrillamaestra.com>')
+
+# Login con Google (Google Identity Services)
+GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID', default='')

@@ -6,6 +6,7 @@ export const authAPI = {
     client.post('/token/', { username, password }),
   register: (data) => client.post('/auth/register/', data),
   me: () => client.get('/auth/me/'),
+  google: (credential, role) => client.post('/auth/google/', { credential, role }),
 };
 
 /* ---------- Categorías y servicios ---------- */
