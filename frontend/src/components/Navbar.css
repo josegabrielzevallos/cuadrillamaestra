@@ -1,0 +1,150 @@
+.navbar {
+  background: var(--cm-navy);
+  color: #fff;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+.navbar-logo span strong {
+  color: var(--cm-yellow);
+  font-weight: 800;
+}
+
+/* Buscador */
+.navbar-search {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 6px 0 12px;
+  height: 44px;
+}
+.navbar-search-icon {
+  color: var(--cm-gray);
+}
+.navbar-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--cm-black);
+  background: transparent;
+}
+.navbar-search button {
+  background: var(--cm-yellow);
+  color: var(--cm-navy);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.navbar-search button:hover {
+  background: var(--cm-yellow-dark);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+}
+.navbar-links a {
+  color: #e9eef5;
+  font-weight: 500;
+  font-size: 15px;
+}
+.navbar-links a:hover {
+  color: var(--cm-yellow);
+}
+.navbar-cta {
+  padding: 9px 18px !important;
+  font-size: 14px !important;
+}
+.navbar-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.navbar-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.navbar-logout:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .navbar-search {
+    display: none;
+  }
+  .navbar-burger {
+    display: flex;
+  }
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--cm-navy-dark);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .navbar-links.open {
+    max-height: 400px;
+    padding: 12px 20px 20px;
+    gap: 16px;
+  }
+  .navbar-links a,
+  .navbar-links button {
+    width: 100%;
+  }
+}

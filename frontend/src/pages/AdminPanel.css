@@ -1,0 +1,198 @@
+.admin-page {
+  background: var(--cm-gray-light);
+  min-height: calc(100vh - 70px);
+  padding: 30px 0 60px;
+}
+.admin-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+/* Lateral */
+.admin-side {
+  background: #fff;
+  border: 1px solid var(--cm-gray-border);
+  border-radius: var(--cm-radius);
+  padding: 20px;
+  position: sticky;
+  top: 90px;
+}
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cm-gray-border);
+  margin-bottom: 16px;
+}
+.admin-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--cm-navy);
+  color: var(--cm-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+}
+.admin-user strong {
+  display: block;
+  font-size: 15px;
+}
+.admin-user span {
+  color: var(--cm-gray);
+  font-size: 13px;
+  text-transform: capitalize;
+}
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.admin-nav button,
+.admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 11px 14px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cm-black);
+  cursor: pointer;
+  text-align: left;
+}
+.admin-nav button.active {
+  background: var(--cm-navy);
+  color: #fff;
+}
+.admin-nav button:hover:not(.active),
+.admin-nav-link:hover {
+  background: var(--cm-gray-light);
+}
+
+/* Contenido */
+.admin-content h1 {
+  font-size: 26px;
+  margin-bottom: 22px;
+}
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.admin-card {
+  background: #fff;
+  border: 1px solid var(--cm-gray-border);
+  border-radius: var(--cm-radius);
+  padding: 22px;
+  text-align: center;
+}
+.admin-card strong {
+  display: block;
+  font-size: 28px;
+  margin: 8px 0 2px;
+  color: var(--cm-navy);
+}
+.admin-card span {
+  color: var(--cm-gray);
+  font-size: 14px;
+}
+.admin-profile-card {
+  background: #fff;
+  border: 1px solid var(--cm-gray-border);
+  border-radius: var(--cm-radius);
+  padding: 24px;
+}
+.admin-profile-card h3 {
+  font-size: 20px;
+}
+.admin-profile-card p {
+  color: var(--cm-yellow-dark);
+  font-weight: 600;
+  margin: 4px 0 10px;
+}
+
+.admin-empty {
+  background: #fff;
+  border: 1px solid var(--cm-gray-border);
+  border-radius: var(--cm-radius);
+  padding: 50px 20px;
+  text-align: center;
+  color: var(--cm-gray);
+}
+.admin-empty p {
+  margin-bottom: 16px;
+}
+
+/* Tabla */
+.admin-table {
+  background: #fff;
+  border: 1px solid var(--cm-gray-border);
+  border-radius: var(--cm-radius);
+  overflow: hidden;
+}
+.admin-table-head,
+.admin-table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1fr 1fr;
+  gap: 12px;
+  padding: 14px 18px;
+  align-items: center;
+}
+.admin-table-head {
+  background: var(--cm-gray-light);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--cm-gray);
+  text-transform: uppercase;
+}
+.admin-table-row {
+  border-top: 1px solid var(--cm-gray-border);
+  font-size: 14px;
+}
+.admin-table-row small {
+  color: var(--cm-gray);
+}
+.status {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status-new { background: rgba(245, 179, 1, 0.18); color: var(--cm-yellow-dark); }
+.status-in_progress { background: rgba(15, 42, 71, 0.12); color: var(--cm-navy); }
+.status-closed { background: rgba(30, 158, 106, 0.15); color: var(--cm-success); }
+
+@media (max-width: 860px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .admin-side {
+    position: static;
+  }
+  .admin-cards {
+    grid-template-columns: 1fr;
+  }
+  .admin-table-head {
+    display: none;
+  }
+  .admin-table-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .admin-table-row span::before {
+    content: attr(data-label) ': ';
+    font-weight: 600;
+    color: var(--cm-gray);
+  }
+}

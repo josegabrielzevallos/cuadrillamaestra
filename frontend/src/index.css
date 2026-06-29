@@ -1,0 +1,123 @@
+/* ===========================================================
+   Cuadrilla Maestra — Tema global
+   Paleta: azul oscuro (confianza), amarillo construcción (acción),
+   gris, blanco y negro suave.
+   =========================================================== */
+:root {
+  --cm-navy: #0f2a47;          /* Azul oscuro principal */
+  --cm-navy-dark: #0a1f36;     /* Azul más profundo */
+  --cm-navy-light: #1c3d63;    /* Azul medio */
+  --cm-yellow: #f5b301;        /* Amarillo construcción */
+  --cm-yellow-dark: #d99a00;   /* Amarillo hover */
+  --cm-gray: #6b7280;          /* Gris textos secundarios */
+  --cm-gray-light: #f4f6f8;    /* Gris fondo */
+  --cm-gray-border: #e3e8ee;   /* Bordes */
+  --cm-black: #1f2933;         /* Negro suave */
+  --cm-white: #ffffff;
+  --cm-success: #1e9e6a;
+  --cm-shadow: 0 4px 16px rgba(15, 42, 71, 0.08);
+  --cm-shadow-hover: 0 10px 28px rgba(15, 42, 71, 0.16);
+  --cm-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Helvetica Neue', sans-serif;
+  color: var(--cm-black);
+  background: var(--cm-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  color: var(--cm-navy);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Botones reutilizables */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--cm-yellow);
+  color: var(--cm-navy);
+}
+.btn-primary:hover {
+  background: var(--cm-yellow-dark);
+}
+
+.btn-navy {
+  background: var(--cm-navy);
+  color: var(--cm-white);
+}
+.btn-navy:hover {
+  background: var(--cm-navy-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cm-navy);
+  border: 2px solid var(--cm-navy);
+}
+.btn-outline:hover {
+  background: var(--cm-navy);
+  color: var(--cm-white);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+.btn-whatsapp:hover {
+  background: #1da851;
+}
+
+/* Etiqueta verificado */
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(30, 158, 106, 0.12);
+  color: var(--cm-success);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

@@ -1,0 +1,9 @@
+{
+  "short_name": "Cuadrilla Maestra",
+  "name": "Cuadrilla Maestra — Servicios de construcción verificados",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0F2A47",
+  "background_color": "#ffffff"
+}
