@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 
 from .models import ContactRequest
 from .serializers import ContactRequestSerializer
+from .notifications import notify_worker_new_request
 
 
 class ContactRequestViewSet(viewsets.ModelViewSet):
@@ -33,4 +34,5 @@ class ContactRequestViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Las solicitudes nuevas siempre nacen como "nuevas"; el estado solo
         # lo cambia el trabajador/personal mediante PATCH.
-        serializer.save(status=ContactRequest.Status.NEW)
+        instance = serializer.save(status=ContactRequest.Status.NEW)
+        notify_worker_new_request(instance)

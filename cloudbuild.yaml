@@ -34,8 +34,8 @@ steps:
       - --platform=managed
       - --allow-unauthenticated
       - --add-cloudsql-instances=${_DB_INSTANCE}
-      - --set-env-vars=DEBUG=False,DB_HOST=/cloudsql/${_DB_INSTANCE}
-      - --set-secrets=SECRET_KEY=cuadrilla-secret-key:latest,DB_PASSWORD=cuadrilla-db-password:latest
+      - --set-env-vars=DEBUG=False,DB_HOST=/cloudsql/${_DB_INSTANCE},EMAIL_HOST=smtp.gmail.com,EMAIL_PORT=587,EMAIL_USE_TLS=True,EMAIL_HOST_USER=cuadrillamaestra@gmail.com,DEFAULT_FROM_EMAIL=cuadrillamaestra@gmail.com
+      - --set-secrets=SECRET_KEY=cuadrilla-secret-key:latest,DB_PASSWORD=cuadrilla-db-password:latest,EMAIL_HOST_PASSWORD=cuadrilla-email-password:latest
 
   # ---------- Frontend ----------
   - name: 'gcr.io/cloud-builders/docker'
