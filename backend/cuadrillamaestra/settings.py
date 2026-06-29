@@ -122,6 +122,19 @@ STORAGES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# En producción los archivos subidos se guardan en Google Cloud Storage
+# (Cloud Run no conserva el sistema de archivos entre instancias).
+GS_BUCKET_NAME = config('GS_BUCKET_NAME', default='')
+if GS_BUCKET_NAME:
+    STORAGES['default'] = {
+        'BACKEND': 'storages.backends.gcloud.GoogleCloudStorage',
+        'OPTIONS': {
+            'bucket_name': GS_BUCKET_NAME,
+            'querystring_auth': False,
+        },
+    }
+    MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REST Framework

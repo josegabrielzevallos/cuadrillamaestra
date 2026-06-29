@@ -12,6 +12,7 @@ substitutions:
   _DB_INSTANCE: ''
   _API_URL: 'https://api.cuadrillamaestra.com/api'
   _GOOGLE_CLIENT_ID: '120096430295-sembfqkimdvglai65araoolpu3dsvuaq.apps.googleusercontent.com'
+  _GS_BUCKET_NAME: 'cuadrilla-media-120096430295'
 
 steps:
   # ---------- Backend ----------
@@ -35,7 +36,7 @@ steps:
       - --platform=managed
       - --allow-unauthenticated
       - --add-cloudsql-instances=${_DB_INSTANCE}
-      - --set-env-vars=DEBUG=False,DB_HOST=/cloudsql/${_DB_INSTANCE},EMAIL_HOST=smtp.gmail.com,EMAIL_PORT=587,EMAIL_USE_TLS=True,EMAIL_HOST_USER=cuadrillamaestra@gmail.com,DEFAULT_FROM_EMAIL=cuadrillamaestra@gmail.com,GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}
+      - --set-env-vars=DEBUG=False,DB_HOST=/cloudsql/${_DB_INSTANCE},EMAIL_HOST=smtp.gmail.com,EMAIL_PORT=587,EMAIL_USE_TLS=True,EMAIL_HOST_USER=cuadrillamaestra@gmail.com,DEFAULT_FROM_EMAIL=cuadrillamaestra@gmail.com,GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID},GS_BUCKET_NAME=${_GS_BUCKET_NAME}
       - --set-secrets=SECRET_KEY=cuadrilla-secret-key:latest,DB_PASSWORD=cuadrilla-db-password:latest,EMAIL_HOST_PASSWORD=cuadrilla-email-password:latest
 
   # ---------- Frontend ----------

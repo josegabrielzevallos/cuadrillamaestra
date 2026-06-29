@@ -12,15 +12,23 @@ import './WorkerCard.css';
 const WorkerCard = ({ worker }) => {
   const navigate = useNavigate();
   const services = worker.services || [];
-  const avatar =
-    worker.profile_image ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(worker.name || 'CM')}&background=0b2545&color=fff&size=128`;
+  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    worker.name || 'CM'
+  )}&background=0b2545&color=fff&size=128`;
+  const avatar = worker.profile_image || fallbackAvatar;
 
   return (
     <div className="worker-card">
       <div className="worker-card-top">
         <div className="worker-avatar">
-          <img src={avatar} alt={worker.name} />
+          <img
+            src={avatar}
+            alt={worker.name}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = fallbackAvatar;
+            }}
+          />
         </div>
         <div className="worker-head">
           <div className="worker-name-row">

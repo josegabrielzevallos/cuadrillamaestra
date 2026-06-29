@@ -42,9 +42,10 @@ const WorkerDetail = () => {
   const evaluation = worker.supervisor_evaluation;
   const reviews = worker.client_reviews || [];
   const projects = worker.projects || [];
-  const avatar =
-    worker.profile_image ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(worker.name || 'CM')}&background=0b2545&color=fff&size=200`;
+  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    worker.name || 'CM'
+  )}&background=0b2545&color=fff&size=200`;
+  const avatar = worker.profile_image || fallbackAvatar;
 
   return (
     <div className="detail-page">
@@ -52,7 +53,14 @@ const WorkerDetail = () => {
       <div className="detail-hero">
         <div className="container detail-hero-inner">
           <div className="detail-avatar">
-            <img src={avatar} alt={worker.name} />
+            <img
+              src={avatar}
+              alt={worker.name}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = fallbackAvatar;
+              }}
+            />
           </div>
           <div className="detail-headinfo">
             <div className="detail-name-row">
